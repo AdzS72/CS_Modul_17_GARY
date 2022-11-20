@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const userRouter = require('./router/router')
 const { Client } = require('pg');
 const bcrypt = require('bcrypt');
-const db = require('./db.config/db.config')
+const db = require('./db.config/db.config.js')
 require('dotenv').config()
 
 db.connect((err) =>{
