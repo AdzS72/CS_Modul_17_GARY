@@ -19,13 +19,15 @@ const register = async(req, res, next) => {
         VALUES(DEFAULT, $1, $2, $3)`, [username,email,hash])
         res.send("Data Berhasil Ditambahkan ke Database")
     } catch (error) {
-        res.send("Data Tidak Valid");
+        console.log(error.detail)
+        res.send(error.detail);
     }
 }
 
 const login = async(req, res, next) => {
     // 9. komparasi antara password yang diinput oleh pengguna dan password yang ada didatabase
     const {email, password} = req.body
+    console.log(email, password)
     try {
         const user  = await db.query(`SELECT * FROM unhan_modul_17 WHERE email=$1`, [email])
         var id        = user.rows[0]['id']

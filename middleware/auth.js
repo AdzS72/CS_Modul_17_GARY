@@ -4,8 +4,7 @@ SECRET = process.env.SECRET
 
 const Auth = {
     verifyToken(req, res, next){
-        const token = req.cookies.token
-        console.log(token);
+        const token = req.body.token
         if (!token) {
           return res.status(403).send("A token is required for authentication");
         }
@@ -15,7 +14,7 @@ const Auth = {
           req.user = verified
           return next()
         } catch(err){
-          res.status(403).send({message: 'Youre not authenticated, please login first'})
+          res.status(403).send('Youre not authenticated, please login first')
           console.log('Youre not authenticated');
         }
     }
